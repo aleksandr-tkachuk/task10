@@ -2,26 +2,34 @@
 
 include_once './config/config.php';
 include_once './libs/sql.php';
-include_once './libs/msql.php';
-//include_once './libs/postgresql.php';
+include_once './libs/mysql.php';
+include_once './libs/postgresql.php';
 
 
-//$pg = new PostgreSql(HOST, USER_POSTRE, PASSWORD_POSTRE,DBNAME);
-//$res = $pg->select('data')->from(TABLE_NAME)->where('`key`' . ' = ' . '"Sasha"')->exec();
-
-
-$sql = new MySql(HOST, USER, PASSWORD,DBNAME);
-$res = $sql->
-        select('qwe, qqq')->
-        from('book')->
-        join('tablename', 'col1.id = col2.id', '', 'cross')->
-        join('tablename1', 'col4.id = col5.id', 'outer', 'left')->
-        where('col3.id = col4.id')->
-        having('col6.id = col7.id')->
-        group("col10")->
-        order("col5 asc")->
-        limit(4, 10)->
+/*$pg = new PostgreSql(HOST, USER_POSTRE, PASSWORD_POSTRE,DBNAME_POSTRE);
+$res = $pg->
+        select("'author_name','book_name','genre_name'")->
+        from('author')->
+        join('book', 'author.author_id = book.book_id', '', 'left')->
+        join('author_book', 'author_book.book_id = book.book_id', '', 'left')->
+        join('author_book ab', 'ab.author_id = author.author_id', '', 'left')->
+        join('genre_book', 'genre_book.genre_id = book.book_id', '', 'left')->
+        join('genre', 'genre.genre_id = genre.genre_id', '', 'left')->
+        order("author.author_name asc")->
+        //group("author_name")->
         exec();
-exit();
+*/
+        $sql = new MySql(HOST, USER, PASSWORD,DBNAME);
+        $res = $sql->
+        select("`author_name`,`book_name`, `genre_name`")->
+        from('author')->
+        //distinct()->
+        join('author_book', 'author.author_id = author_book.author_id', '', 'right')->
+        join('book', 'author_book.book_id = book.book_id', '', 'right')->
+        join('genre_book', 'genre_book.book_id = book.book_id', '', 'right')->
+        join('genre', 'genre.genre_id = genre_book.genre_id', '', 'left')->
+        order("author.author_name asc")->
+        //group("author_name")->
+        exec();
 include_once 'templates/index.php';
 
