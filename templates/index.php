@@ -11,8 +11,8 @@
 <body>
 
     <div class="alert alert-success" role="alert">
-        <?="you ".$sql->getQuery()?><br>
-        <?=($res)?"the request was successful : ".print_r($res) :'error in request'?>
+        <?="you ".$query->getQuery()?><br>
+        <?=($res !== false)?"the request was successful : ".print_r($res) :'error in request'?>
 
     </div>
         

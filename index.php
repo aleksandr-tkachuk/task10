@@ -6,8 +6,8 @@ include_once './libs/mysql.php';
 include_once './libs/postgresql.php';
 
 
-/*$pg = new PostgreSql(HOST, USER_POSTRE, PASSWORD_POSTRE,DBNAME_POSTRE);
-$res = $pg->
+$query = new PostgreSql(HOST, USER_POSTRE, PASSWORD_POSTRE,DBNAME_POSTRE);
+$res = $query->
         select("'author_name','book_name','genre_name'")->
         from('author')->
         join('book', 'author.author_id = book.book_id', '', 'left')->
@@ -18,9 +18,10 @@ $res = $pg->
         order("author.author_name asc")->
         //group("author_name")->
         exec();
-*/
-        $sql = new MySql(HOST, USER, PASSWORD,DBNAME);
-        $res = $sql->
+
+/*
+        $query = new MySql(HOST, USER, PASSWORD,DBNAME);
+        $res = $query->
         select("`author_name`,`book_name`, `genre_name`")->
         from('author')->
         //distinct()->
@@ -30,6 +31,6 @@ $res = $pg->
         join('genre', 'genre.genre_id = genre_book.genre_id', '', 'left')->
         order("author.author_name asc")->
         //group("author_name")->
-        exec();
+        exec();*/
 include_once 'templates/index.php';
 

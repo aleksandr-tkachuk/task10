@@ -112,20 +112,26 @@ abstract class Sql {
         if (empty($this->from)) {
             throw new Exception("not set");
         }
+
         if ($this->delete) {
+
             $this->query = "delete from {$this->from}";
             return $this->result;
         } elseif (!empty($this->insert)) {
+
             $this->query = "insert into {$this->from} $this->insert";
         } elseif (!empty($this->update)) {
+
             $this->query = "update  {$this->from} set $this->update";
             $this->query .= (!empty($this->where)) ? " where {$this->where};" : '';
         } else {
+
             if (empty($this->select)) {
                 throw new Exception("not select set");
             }
 
             $this->query = "select ".(($this->distinct) ? " distinct " : " ")." {$this->select} from {$this->from}";
+
             foreach ($this->join as $join) {
                 $this->query .= " {$join[3]} {$join[2]} join {$join[0]} on {$join[1]}";
             }
