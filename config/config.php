@@ -1,11 +1,12 @@
 <?php
 
 define('HOST', "localhost");
-define('USER', "root");
+//postgresql
 define('USER_POSTRE', 'postgres');
-define('PASSWORD', "123456");
 define('PASSWORD_POSTRE', "123456");
 define('DBNAME_POSTRE', "postgres");
+//mysql
+define('USER', "root");
 define('DBNAME', "newBookShop");
-define('TABLE_NAME', "my_test");
+define('PASSWORD', "123456");
 

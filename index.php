@@ -5,7 +5,7 @@ include_once './libs/sql.php';
 include_once './libs/mysql.php';
 include_once './libs/postgresql.php';
 
-
+/*
 $query = new PostgreSql(HOST, USER_POSTRE, PASSWORD_POSTRE,DBNAME_POSTRE);
 $res = $query->
         select("'author_name','book_name','genre_name'")->
@@ -19,7 +19,7 @@ $res = $query->
         //group("author_name")->
         exec();
 
-/*
+*/
         $query = new MySql(HOST, USER, PASSWORD,DBNAME);
         $res = $query->
         select("`author_name`,`book_name`, `genre_name`")->
@@ -31,6 +31,6 @@ $res = $query->
         join('genre', 'genre.genre_id = genre_book.genre_id', '', 'left')->
         order("author.author_name asc")->
         //group("author_name")->
-        exec();*/
+        exec();
 include_once 'templates/index.php';
 
